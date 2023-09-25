@@ -317,3 +317,65 @@ a.custom-card:hover {
   color: gold;
   text-shadow: 0 0 10px #952;
 }
+
+/* Aqui comienza el estilo para el menu desplegable del usuario*/
+#usuario {
+  list-style: none;
+  justify-content: space-around;
+  cursor: pointer;
+  padding: 0 30px;
+  display: flex;
+  align-items: center;
+}
+
+#usuario:hover{
+  background-color: orange;
+  padding: 0px 40px;
+  transition: 0.5s;
+}
+
+.nav-item:hover{
+  background-color: orange;
+  padding: 0px 30px;
+  transition: 0.5s;
+}
+
+#usuario ul{
+  display: none; 
+  position: absolute;
+  list-style: none;
+  width: 250px;
+  background-color:#28242cbd;
+  padding: 0; 
+  text-align: center;
+}
+
+#usuario li a{
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 15px 20px;
+  line-height: 30px;
+}
+
+#usuario:hover{
+  display: block;
+}
+
+#usuario a:hover{
+  font-weight:bold;
+  font-size: 17px;
+  transition: 1s;
+  background-color: orange;
+  width: 250px;
+}
+
+#usuario li a i {
+  margin-right: 10px; 
+  font-size: 25px;
+}
+
+#usuario li {
+  display: flex; 
+  align-items: center; 
+}
