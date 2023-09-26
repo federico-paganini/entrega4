@@ -9,10 +9,10 @@ document.addEventListener("DOMContentLoaded", function () {
     li_nav.classList.add("nav-item");
     li_nav.classList.add("dropdown");
     li_nav.innerHTML = `
-        <span class ="nav-link" role="button" data-bs-toggle="dropdown" 
+        <span class ="nav-link" id="userdisplay" role="button" data-bs-toggle="dropdown" 
         aria-expanded="false">${email}
-        <i class="bi bi-caret-up" style="display: none;"></i>
-        <i class="bi bi-caret-down"></i>
+        <i class="bi bi-caret-up" id="hideuserm" style="display: none;"></i>
+        <i class="bi bi-caret-down" id="showuserm"></i>
         </span>
     `;
 
@@ -58,4 +58,29 @@ document.addEventListener("DOMContentLoaded", function () {
     `;
 
     li_nav.appendChild(MenuDesplegable);
+
+
+    const userdisp = document.getElementById("userdisplay");
+
+    userdisp.addEventListener("click", () => {
+        const showarrow = document.getElementById("showuserm");
+        const hidearrow = document.getElementById("hideuserm");
+        if(showarrow.style.display === "none") {
+            showarrow.style.display = "inline-block";
+            hidearrow.style.display = "none";
+            li_nav.classList.remove("userclicked");
+        } else {
+            showarrow.style.display = "none";
+            hidearrow.style.display = "inline-block";
+            li_nav.classList.add("userclicked");
+        }
+    })
+
+    document.addEventListener("click", function (event) {
+        if (!userdisp.contains(event.target)) {
+            userdisp.classList.remove("userclicked");
+            showarrow.style.display = "inline-block";
+            hidearrow.style.display = "none";
+        }
+    })
 });

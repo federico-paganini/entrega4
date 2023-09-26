@@ -320,39 +320,32 @@ a.custom-card:hover {
 
 /* Aqui comienza el estilo para el menu desplegable del usuario*/
 
-.gradient-box::before {
-  content:"";
-  background: linear-gradient(to right,  #ff7010, #ff2b06);
-  transition: opacity 0.5s ease;
-  opacity: 0;
-  z-index: -1;
-}
-
-.gradient-box:hover::before {
-  opacity: 1;
-}
-
 #usuario:hover{
-  background: linear-gradient(to right,  #ff7010, #ff2b06);
+  background-color: #ff2b06;
+  transition: 0.5s;
+}
+
+.userclicked {
+  background-color: #ff2b06;
 }
 
 
-/*
 #usuario ul{
-  width: 250px;
   background-color:#28242cbd;
-  padding: 0; 
-  text-align: center;
 }
 
+.dropdown-item:hover{
+  background-color: #ff2b06;
+  transition: 0.5s;
+}
 
+.nav-item:hover {
+  background-color: #ff2b06;
+  transition: 0.5s;
+}
 
 #usuario li a{
-  display: block;
   color: white;
-  text-decoration: none;
-  padding: 15px 20px;
-  line-height: 30px;
 }
 
 
@@ -364,21 +357,9 @@ a.custom-card:hover {
   font-weight:bold;
   font-size: 17px;
   transition: 1s;
-  background-color: linear-gradient(to right,  #ff7010, #ff2b06);
-  width: 250px;
+  background-color: #ff2b06;
 }
 
-#usuario li a i {
-  margin-right: 10px; 
-  font-size: 25px;
-}
-
-#usuario li {
-  display: flex; 
-  align-items: center; 
-}
-
-*/
 
 /* Light - Dark Mode Switch Styles */
 .contain {
