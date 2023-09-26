@@ -1,43 +1,61 @@
-document.addEventListener("DOMContentLoaded", function(){
-    if(!localStorage.getItem("isLoggedIn")){
+document.addEventListener("DOMContentLoaded", function () {
+    if (!localStorage.getItem("isLoggedIn")) {
         const usuario = document.getElementById("usuario");
-        usuario.style.display = "none";
+        usuario.remove();
     }
     let email = localStorage.getItem("email");
     let li_nav = document.getElementById("usuario");
-    
-    li_nav.innerHTML=`
-    <div id="menu-toggle">
-            <i class="bi bi-caret-left" id="menuAbrir"></i>
-            <i class="bi bi-caret-down" id="menuCerrar"></i>
-        </div>
-    <span class ="nav-link">${email}</span>`;
 
-    let menuAbrir = document.getElementById("menuAbrir");
-    let menuCerrar = document.getElementById("menuCerrar");
-
-    //Aquí comienza el código para crear el menu desplegable del usuario
-    let MenuDesplegable=document.createElement("ul");
-    
-    MenuDesplegable.innerHTML= ` 
-    <li><a href="my-profile.html"><i class="bi bi-person"></i> Mi perfil</a></li>
-    <li><a href="cart.html"><i class="bi bi-cart"></i> Mi carrito</a></li>
-    <li><a href="login.html"><i class="bi bi-door-closed"></i> Cerrar sesión</a></li>
+    li_nav.classList.add("nav-item");
+    li_nav.classList.add("dropdown");
+    li_nav.innerHTML = `
+        <span class ="nav-link" role="button" data-bs-toggle="dropdown" 
+        aria-expanded="false">${email}
+        <i class="bi bi-caret-up" style="display: none;"></i>
+        <i class="bi bi-caret-down"></i>
+        </span>
     `;
 
-    let Usuario_li = document.getElementById("usuario");
+    //Aquí comienza el código para crear el menu desplegable del usuario
+    let MenuDesplegable = document.createElement("ul");
+    MenuDesplegable.classList.add("dropdown-menu");
 
-    Usuario_li.addEventListener("click", ()=> {
-        if(MenuDesplegable.style.display==='none' || MenuDesplegable.style.display===''){
-            MenuDesplegable.style.display='block';
-            menuAbrir.style.display = 'none';
-            menuCerrar.style.display = 'inline';
-        } else {
-            MenuDesplegable.style.display='none';
-            menuAbrir.style.display = 'inline';
-            menuCerrar.style.display = 'none';
-            }
-    });
-    Usuario_li.appendChild(MenuDesplegable);
+    MenuDesplegable.innerHTML = ` 
+    <li>
+        <a class="dropdown-item" href="my-profile.html">
+            <i class="bi bi-person"></i> 
+            Mi perfil
+        </a>
+    </li>
+    <li>
+        <a class="dropdown-item" href="cart.html">
+            <i class="bi bi-cart"></i> 
+            Mi carrito
+        </a>
+    </li>
+    <li><hr class="dropdown-divider"></li>
+    <li>
+    <div class="dropdown-item">
+        <span> Modo Claro / Modo Oscuro </span>
+        <div class="contain text-center">
+            <label class="toggleswitch">
+                <input type="checkbox" name="switch" id="modeswitch">
+                <span>
+                    <i class="bi bi-brightness-high-fill off"></i>
+                    <i class="bi bi-moon-stars-fill on"></i>
+                </span>
+            </label>
+        </div>
+    </div>
+    </li>
+    <li><hr class="dropdown-divider"></li>
+    <li>
+        <a class="dropdown-item" href="login.html">
+            <i class="bi bi-door-closed"></i> 
+            Cerrar sesión
+        </a>
+    </li>
+    `;
+
+    li_nav.appendChild(MenuDesplegable);
 });
-    
