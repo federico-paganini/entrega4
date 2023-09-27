@@ -348,16 +348,8 @@ a.custom-card:hover {
   color: white;
 }
 
-
-#usuario:hover{
-  display: block;
-}
-
-#usuario a:hover{
-  font-weight:bold;
-  font-size: 17px;
-  transition: 1s;
-  background-color: #ff2b06;
+#usuario div span {
+  color:white;
 }
 
 

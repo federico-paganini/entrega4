@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
     li_nav.classList.add("dropdown");
     li_nav.innerHTML = `
         <span class ="nav-link" id="userdisplay" role="button" data-bs-toggle="dropdown" 
-        aria-expanded="false">${email}
+        aria-expanded="false" data-bs-auto-close="false">${email}
         <i class="bi bi-caret-up" id="hideuserm" style="display: none;"></i>
         <i class="bi bi-caret-down" id="showuserm"></i>
         </span>
@@ -36,10 +36,10 @@ document.addEventListener("DOMContentLoaded", function () {
     <li><hr class="dropdown-divider"></li>
     <li>
     <div class="dropdown-item">
-        <span> Modo Claro / Modo Oscuro </span>
+        <span>Modo Claro / Modo Oscuro</span>
         <div class="contain text-center">
             <label class="toggleswitch">
-                <input type="checkbox" name="switch" id="modeswitch">
+                <input type="checkbox" name="switch" class="form-check-input" id="modeswitch">
                 <span>
                     <i class="bi bi-brightness-high-fill off"></i>
                     <i class="bi bi-moon-stars-fill on"></i>
@@ -59,13 +59,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     li_nav.appendChild(MenuDesplegable);
 
-
+    //Se manejan los eventos click para cuando se despliega el menú o se contrae
     const userdisp = document.getElementById("userdisplay");
+    const showarrow = document.getElementById("showuserm");
+    const hidearrow = document.getElementById("hideuserm");
 
     userdisp.addEventListener("click", () => {
-        const showarrow = document.getElementById("showuserm");
-        const hidearrow = document.getElementById("hideuserm");
-        if(showarrow.style.display === "none") {
+        if (showarrow.style.display === "none") {
             showarrow.style.display = "inline-block";
             hidearrow.style.display = "none";
             li_nav.classList.remove("userclicked");
@@ -76,11 +76,25 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     })
 
-    document.addEventListener("click", function (event) {
-        if (!userdisp.contains(event.target)) {
-            userdisp.classList.remove("userclicked");
-            showarrow.style.display = "inline-block";
-            hidearrow.style.display = "none";
+    const ligthdarkswitch = document.getElementById("modeswitch");
+
+    ligthdarkswitch.addEventListener("click", (event) => {
+        event.stopPropagation();
+        if (ligthdarkswitch.checked) {
+            localStorage.setItem("darktheme", true);
+            localStorage.setItem("switchstate", true);
+            document.documentElement.setAttribute("data-bs-theme", "dark");
+        } else {
+            localStorage.setItem("darktheme", false);
+            localStorage.setItem("switchstate", false);
+            document.documentElement.setAttribute("data-bs-theme", "light");
         }
+    })
+
+    const switchstate = localStorage.getItem("switchstate") === "true";
+    ligthdarkswitch.checked = switchstate;
+
+    ligthdarkswitch.addEventListener("change", () => {
+        localStorage.setItem("switchstate", ligthdarkswitch.checked);
     })
 });
