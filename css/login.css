@@ -1,9 +1,9 @@
 /*Start login style*/
 
 #IngresoLogin{
-    background-image: url(/img/Fondo_login.png) !important;
+    background-image: url(/img/Fondo_login.png), linear-gradient(to left, #ff914d, #ff3131) !important;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
   }
   .container2{ /*This part is the colored box that cotains the form*/
     width: 600px;
