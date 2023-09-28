@@ -62,6 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
     li_nav.appendChild(MenuDesplegable);
 
     //Se manejan los eventos click para cuando se despliega el menú o se contrae
+    //Fija el hover cuando esta despleago el menú y cambia el sentido de las flechas
     const userdisp = document.getElementById("userdisplay");
     const showarrow = document.getElementById("showuserm");
     const hidearrow = document.getElementById("hideuserm");
@@ -85,28 +86,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const ligthdarkswitch = document.getElementById("modeswitch");
 
+    //Cambia en tiempo real el tema seleccionado Light/Dark 
     ligthdarkswitch.addEventListener("click", (event) => {
         event.stopPropagation();
         if (ligthdarkswitch.checked) {
             localStorage.setItem("darktheme", true);
-            localStorage.setItem("switchstate", true);
             document.documentElement.setAttribute("data-bs-theme", "dark");
             usermenubox.classList.add("back-dkmode");
         } else {
             localStorage.setItem("darktheme", false);
-            localStorage.setItem("switchstate", false);
             document.documentElement.setAttribute("data-bs-theme", "light");
             usermenubox.classList.remove("back-dkmode");
         }
     })
 
-    const switchstate = localStorage.getItem("switchstate") === "true";
+    //Hace que el switch quede para el lado del tema seleccionado siempre
+    const switchstate = localStorage.getItem("darktheme") === "true";
     ligthdarkswitch.checked = switchstate;
 
-    ligthdarkswitch.addEventListener("change", () => {
-        localStorage.setItem("switchstate", ligthdarkswitch.checked);
-    })
-
+    //Cambia el estado del menú de usuario según el tema seleccionado
     const settedmode = localStorage.getItem("darktheme");
     if (settedmode === "true") {
         usermenubox.classList.add("back-dkmode");

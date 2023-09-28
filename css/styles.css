@@ -334,7 +334,7 @@ a.custom-card:hover {
   background-color: #ff2b06;
 }
 
-
+/* Cambios para manejar el background del menú de usuario según el modo seleccionado */
 .back-dkmode{
   background-color:#28242cbd !important;
 }
@@ -342,6 +342,8 @@ a.custom-card:hover {
 .back-lgmode{
   background-color:rgba(255, 255, 255, 0.658);
 }
+
+/* Hover por defecto de bootstrap cambiado */
 
 .dropdown-item:hover{
   background-color: #ff2b06;
