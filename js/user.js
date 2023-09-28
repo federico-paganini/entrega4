@@ -19,6 +19,8 @@ document.addEventListener("DOMContentLoaded", function () {
     //Aquí comienza el código para crear el menu desplegable del usuario
     let MenuDesplegable = document.createElement("ul");
     MenuDesplegable.classList.add("dropdown-menu");
+    MenuDesplegable.classList.add("back-lgmode");
+    MenuDesplegable.setAttribute("id", "usermenubox");
 
     MenuDesplegable.innerHTML = ` 
     <li>
@@ -63,6 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const userdisp = document.getElementById("userdisplay");
     const showarrow = document.getElementById("showuserm");
     const hidearrow = document.getElementById("hideuserm");
+    const usermenubox = document.getElementById("usermenubox");
 
     userdisp.addEventListener("click", () => {
         if (showarrow.style.display === "none") {
@@ -76,6 +79,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     })
 
+
+    //Eventos para cambiar el tema de claro a osuro. Algunos elementos no se cambiaban con activar el switch
+    //ya que son personalizados, por lo que se trataron de forma específica
+
     const ligthdarkswitch = document.getElementById("modeswitch");
 
     ligthdarkswitch.addEventListener("click", (event) => {
@@ -84,10 +91,12 @@ document.addEventListener("DOMContentLoaded", function () {
             localStorage.setItem("darktheme", true);
             localStorage.setItem("switchstate", true);
             document.documentElement.setAttribute("data-bs-theme", "dark");
+            usermenubox.classList.add("back-dkmode");
         } else {
             localStorage.setItem("darktheme", false);
             localStorage.setItem("switchstate", false);
             document.documentElement.setAttribute("data-bs-theme", "light");
+            usermenubox.classList.remove("back-dkmode");
         }
     })
 
@@ -97,4 +106,9 @@ document.addEventListener("DOMContentLoaded", function () {
     ligthdarkswitch.addEventListener("change", () => {
         localStorage.setItem("switchstate", ligthdarkswitch.checked);
     })
+
+    const settedmode = localStorage.getItem("darktheme");
+    if (settedmode === "true") {
+        usermenubox.classList.add("back-dkmode");
+    }
 });

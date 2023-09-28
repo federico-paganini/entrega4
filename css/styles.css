@@ -201,6 +201,7 @@ a.custom-card:hover {
 #icon-busq img {
   width: 35px;
   transition: all 300ms;
+  color: black;
 }
 
 #icon-busq {
@@ -232,6 +233,10 @@ a.custom-card:hover {
   margin-top: 50px;
   background: white;
   position:absolute;
+}
+
+.searchicon {
+  font-size: 140%;
 }
 
 /* CAMBIOS REALIZADOS POR MATIAS */
@@ -330,8 +335,12 @@ a.custom-card:hover {
 }
 
 
-#usuario ul{
-  background-color:#28242cbd;
+.back-dkmode{
+  background-color:#28242cbd !important;
+}
+
+.back-lgmode{
+  background-color:rgba(255, 255, 255, 0.658);
 }
 
 .dropdown-item:hover{
@@ -343,15 +352,6 @@ a.custom-card:hover {
   background-color: #ff2b06;
   transition: 0.5s;
 }
-
-#usuario li a{
-  color: white;
-}
-
-#usuario div span {
-  color:white;
-}
-
 
 /* Light - Dark Mode Switch Styles */
 .contain {
