@@ -11,5 +11,27 @@ document.addEventListener("DOMContentLoaded", function(){
         localStorage.setItem("catID", 103);
         window.location = "products.html"
     });
+
+    
+    //Cambia el botón "Y mucho más" según el modo Light/Dark seleccionado
+    const ligthdarkswitch = document.getElementById("modeswitch");
+    const btnligthmode = document.getElementById("btn-lightmode");
+
+    ligthdarkswitch.addEventListener("click", (event) => {
+        event.stopPropagation();
+        if (ligthdarkswitch.checked) {
+            btnligthmode.classList.remove("btn-light");
+            btnligthmode.classList.add("btn-dark");
+        } else {
+            btnligthmode.classList.remove("btn-dark");
+            btnligthmode.classList.add("btn-light");
+        }
+    })
+
+    //Cambia en tiempo real el botón "Y mucho más!" según el modo Light/Dark seleccionado
+    if(localStorage.getItem("darktheme") === "true") {
+        btnligthmode.classList.remove("btn-light");
+        btnligthmode.classList.add("btn-dark");
+    }
 });
 

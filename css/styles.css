@@ -201,6 +201,7 @@ a.custom-card:hover {
 #icon-busq img {
   width: 35px;
   transition: all 300ms;
+  color: black;
 }
 
 #icon-busq {
@@ -232,6 +233,10 @@ a.custom-card:hover {
   margin-top: 50px;
   background: white;
   position:absolute;
+}
+
+.searchicon {
+  font-size: 140%;
 }
 
 /* CAMBIOS REALIZADOS POR MATIAS */
@@ -319,63 +324,111 @@ a.custom-card:hover {
 }
 
 /* Aqui comienza el estilo para el menu desplegable del usuario*/
-#usuario {
-  list-style: none;
-  justify-content: space-around;
+
+#usuario:hover{
+  background-color: #ff2b06;
+  transition: 0.5s;
+}
+
+.userclicked {
+  background-color: #ff2b06;
+}
+
+/* Cambios para manejar el background del menú de usuario según el modo seleccionado */
+.back-dkmode{
+  background-color:#28242cbd !important;
+}
+
+.back-lgmode{
+  background-color:rgba(255, 255, 255, 0.658);
+}
+
+/* Hover por defecto de bootstrap cambiado */
+
+.dropdown-item:hover{
+  background-color: #ff2b06;
+  transition: 0.5s;
+}
+
+.nav-item:hover {
+  background-color: #ff2b06;
+  transition: 0.5s;
+}
+
+/* Light - Dark Mode Switch Styles */
+.contain {
+  margin: 5px;
+}
+
+.toggleswitch span {
+  display: inline-block;
+  position: relative;
+  background: #2c2c2c;
+  min-width: 60px;
+  min-height: 30px;
+  border-radius: 20px;
+  box-shadow: inset 0 0 5px rgba(0,0,0,.2);
+  transition: .5s;
   cursor: pointer;
-  padding: 0 30px;
-  display: flex;
-  align-items: center;
 }
 
-#usuario:hover{
-  background-color: orange;
-  padding: 0px 40px;
-  transition: 0.5s;
-}
-
-.nav-item:hover{
-  background-color: orange;
-  padding: 0px 30px;
-  transition: 0.5s;
-}
-
-#usuario ul{
-  display: none; 
-  position: absolute;
-  list-style: none;
-  width: 250px;
-  background-color:#28242cbd;
-  padding: 0; 
-  text-align: center;
-}
-
-#usuario li a{
+.toggleswitch span::after {
+  content: "";
   display: block;
-  color: white;
-  text-decoration: none;
-  padding: 15px 20px;
-  line-height: 30px;
+  width: 30px;
+  height: 30px;
+  border-radius: 20px;
+  top: 0;
+  left: 0;
+  background: linear-gradient(to right,  #ff7010, #ff2b06);
+  transform: scale(1.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+  transition: .5s;
 }
 
-#usuario:hover{
-  display: block;
-}
-
-#usuario a:hover{
-  font-weight:bold;
-  font-size: 17px;
+.toggleswitch input:checked ~ span{
+  background: linear-gradient(to right,  #ff7010, #ff2b06);
   transition: 1s;
-  background-color: orange;
-  width: 250px;
 }
 
-#usuario li a i {
-  margin-right: 10px; 
-  font-size: 25px;
+.toggleswitch input:checked ~ span::after {
+  transform: scale(1.1) translate(30px);
+  background: #2c2c2c;
 }
 
-#usuario li {
-  display: flex; 
-  align-items: center; 
+.toggleswitch input {
+  display: none;
+}
+
+.toggleswitch .off {
+  position: absolute;
+  color: white;
+  text-shadow: 0 0 8px yellow ;
+  font-size: 28px;
+  left: 1.2px;
+  top: -7px;
+  z-index: 1;
+  transition: .5s;
+}
+
+.toggleswitch .on {
+  position: absolute;
+  color: black;
+  text-shadow: 0 0 7px white;
+  font-size: 24px;
+  left: 5px;
+  top: -2px;
+  z-index: 1;
+  transition: .5s;
+  opacity: 0;
+}
+
+.toggleswitch input:checked ~ span .off{
+  transform: translate(30px);
+  opacity: 0;
+}
+
+.toggleswitch input:checked ~ span .on{
+  transform: translate(30px);
+  opacity: 1;
 }
