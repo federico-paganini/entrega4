@@ -125,7 +125,6 @@ function displayProducts(products) {
       let selectedProductID = product.id;
       localStorage.setItem("ValorID", selectedProductID);
       window.location.href= "product-info.html"
-
     });
   });
 }
