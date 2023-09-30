@@ -261,9 +261,14 @@ a.custom-card:hover {
 }
 
 /* Tamaño máximo del carrusel */
-#miCarousel {
+#miCarousel, #relacionadosC {
   max-width: 50%;
 }
+
+.card-pointer {
+  cursor: pointer;
+}
+
 
 /* Color de fondo de los botones del carrusel, eran blancos y no se veian con algunas imágenes */
 .carousel-control-prev,

@@ -2,11 +2,8 @@ const URL = PRODUCT_INFO_URL + localStorage.getItem("ValorID") + EXT_TYPE;
 
 document.addEventListener("DOMContentLoaded", () => {
   getJSONData(URL).then(function (resultObj) {
-    console.log(resultObj);
-
     if (resultObj.status === "ok") {
       info = resultObj.data;
-      console.log(info);
       showInfo(info);
     }
   });
@@ -18,7 +15,7 @@ function showInfo(info) {
   let htmlContenido = "";
   let htmlImagenes = "";
 
-    htmlContenido += `
+  htmlContenido += `
         <div class="row">
             <div class="d-flex justify-content-between mb-3 mt-3"> 
                 <h1>${info.name}</h1> 
@@ -41,18 +38,18 @@ function showInfo(info) {
             <p>${info.soldCount}</p><br>
             <p class="mb-3 fw-bold">Imágenes Ilustrativas</p><br>
         </div>
-    `
-    document.getElementById("infoLista").innerHTML += htmlContenido;
+    `;
+  document.getElementById("infoLista").innerHTML += htmlContenido;
 
   htmlImagenes += `
         <div class="carousel-item active">
             <img src="${arrayImg[0]}" alt="productoImg" class="d-block w-100">
         </div>
-    `
-  
-    //Mostrar las imagenes, con un for para recorrer el array
-    for (let i = 1; i < arrayImg.length; i++) {
-        htmlImagenes += `
+    `;
+
+  //Mostrar las imagenes, con un for para recorrer el array
+  for (let i = 1; i < arrayImg.length; i++) {
+    htmlImagenes += `
 
             <div class="carousel-item">
                 <img src="${arrayImg[i]}" alt="productoImg" class="d-block w-100">
@@ -189,6 +186,72 @@ document.addEventListener("DOMContentLoaded", () => {
     CreateDiv(divGral, `Descripción:  ${desc}`); //Se crea un nuevo div para mostrar el contenido del comentario
     container.appendChild(divGral);
     comentario.value = "";
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  getJSONData(URL).then(function (resultObj) {
+    if (resultObj.status === "ok") {
+      let product = resultObj.data;
+      var primero = true;
+      product.relatedProducts.forEach((related) => {
+        
+        let div = document.createElement("div"); // <div></div>
+        if (primero)
+        {
+          div.classList.add("carousel-item"); // <div class="carousel-item"></div>
+          div.classList.add("active"); // <div class="carousel-item active"></div>
+        }
+        else div.classList.add("carousel-item"); // <div class="carousel-item"></div>
+                
+        let carta = document.createElement("div");
+        
+        carta.classList.add("container-sm");
+        carta.classList.add("d-flex");
+        carta.classList.add("justify-content-center");
+
+
+        let carta2 = document.createElement("div");
+        carta2.setAttribute("style", "width: 18rem;");
+        carta2.classList.add("card");
+        carta2.classList.add("card-pointer");
+        carta2.innerHTML = `<img src="${related.image}" class="card-img-top">
+        <div class="card-body">
+        <h5 class="card-title">${related.name}</h5>
+        </div>
+        `;
+
+        carta2.addEventListener("click", () => {
+          let selectedProductID = related.id;
+          localStorage.setItem("ValorID", selectedProductID);
+          window.location.href = "product-info.html";
+        });
+
+        carta.appendChild(carta2);
+        div.appendChild(carta);
+
+
+        /* lo de arriba es lo mismo que esto sin el evento
+        var carta = "" ;
+        if (primero)
+          carta += `<div class="carousel-item active">`;
+        else carta += `<div class="carousel-item">`;
+
+        carta += `<div class ="container-sm d-flex justify-content-center">`;
+
+        carta += `<div class="card" style="width: 18rem;">
+        <img src="${related.image}" class="card-img-top">
+        <div class="card-body">
+        <h5 class="card-title">${related.name}</h5>
+        </div>
+        </div>
+        </div>
+        </div>`
+        */
+        primero = false;
+        document.getElementById("relacionadosDiv").appendChild(div);
+      });
+    }
   });
 });
 
